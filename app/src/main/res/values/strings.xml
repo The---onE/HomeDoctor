@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">医依(医)</string>
+    <string name="app_type">医生端</string>
+
+    <string name="scheduling">正在管理您的健康</string>
+
+    <string name="action_settings">设置</string>
+
+    <string name="confirm_exit">再按一次退出程序</string>
+
+    <string name="loading">加载中……</string>
+    <string name="failure">加载失败</string>
+    <string name="no_data">无相关数据</string>
+
+    <string name="navigation_drawer_open">打开导航栏</string>
+    <string name="navigation_drawer_close">关闭导航栏</string>
+
+    <string name="patients">患者列表</string>
+    <string name="contacts">通信录</string>
+    <string name="statistics">统计</string>
+    <string name="me">个人信息</string>
+
+    <string name="login">登录</string>
+    <string name="logout">注销</string>
+    <string name="username">帐号</string>
+    <string name="username_hint">请输入帐号</string>
+    <string name="username_empty">请输入帐号</string>
+    <string name="password">密码</string>
+    <string name="password_hint">请输入登录密码</string>
+    <string name="password_empty">请输入密码</string>
+    <string name="register">注册</string>
+    <string name="register_hint">新用户？立即注册</string>
+    <string name="forget_password">忘记密码？</string>
+
+    <string name="logo">logo</string>
+
+    <string name="add_sign">+</string>
+    <string name="colon">：</string>
+
+    <string name="add">添加</string>
+    <string name="add_success">添加成功</string>
+
+    <string name="measure_data">测量数据</string>
+
+    <string name="measure_title">测量</string>
+    <string name="measure_text">内容</string>
+
+    <string name="daily">每日</string>
+    <string name="period">周期</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">天</string>
+    <string name="hour">小时</string>
+    <string name="minute">分钟</string>
+    <string name="second">秒</string>
+    <string name="second_after">秒后</string>
+
+    <string name="temperature">体温</string>
+    <string name="pules">脉搏</string>
+    <string name="heart_rate">心率</string>
+    <string name="blood_pressure">血压</string>
+
+    <string name="measure_schedule">定时测量设置</string>
+    <string name="temperature_unit">°C</string>
+    <string name="pules_unit">次/分</string>
+    <string name="heart_rate_unit">次/分</string>
+    <string name="blood_pressure_unit">mmHg</string>
+
+    <string name="record_type">健康状况</string>
+    <string name="record_highest">危险</string>
+    <string name="record_high">高值</string>
+    <string name="record_good">良好</string>
+    <string name="record_title">诊断</string>
+    <string name="record_text">医嘱</string>
+    <string name="record_suggestion">康复建议</string>
+    <string name="no_record">无最近记录</string>
+
+    <string name="appointment_hint">预约记录</string>
+    <string name="appointment_time">时间</string>
+    <string name="appointment_type">类型</string>
+    <string name="appointment_symptom">症状</string>
+    <string name="appointment_other">其他</string>
+    <string name="appointment_error">请输入症状</string>
+
+    <string name="name">姓名</string>
+    <string name="gender">性别</string>
+    <string name="birthday">出生日期</string>
+    <string name="height">身高</string>
+    <string name="weight">体重</string>
+    <string name="id_number">身份证号</string>
+    <string name="phone">手机号</string>
+    <string name="email">邮箱</string>
+    <string name="address">联系地址</string>
+
+    <string name="edit">编辑</string>
+    <string name="save">保存</string>
+    <string name="save_success">保存成功</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="error_id">身份证号格式不正确</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
