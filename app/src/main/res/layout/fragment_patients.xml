@@ -4,10 +4,22 @@
     android:layout_height="match_parent"
     tools:context="com.xmx.homedoctor.Fragments.PatientsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/patients_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/patients" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/patients_list"
+            style="@style/MatchAuto"
+            android:layout_gravity="center"
+            android:fastScrollEnabled="true"
+            android:gravity="center"
+            android:overScrollMode="never"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:verticalSpacing="16dp" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
 </FrameLayout>
