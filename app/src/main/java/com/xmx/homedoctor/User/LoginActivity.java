@@ -6,11 +6,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.avos.avoscloud.AVObject;
 import com.xmx.homedoctor.Constants;
 import com.xmx.homedoctor.MainActivity;
 import com.xmx.homedoctor.R;
 import com.xmx.homedoctor.Tools.ActivityBase.BaseActivity;
-import com.xmx.homedoctor.Tools.Data.DataManager;
+import com.xmx.homedoctor.User.Callback.LoginCallback;
 
 public class LoginActivity extends BaseActivity {
     private long mExitTime = 0;
@@ -22,7 +23,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void setListener() {
-        Button login = getViewById(R.id.btn_login);
+        final Button login = getViewById(R.id.btn_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,10 +36,43 @@ public class LoginActivity extends BaseActivity {
                 } else if (password.equals("")) {
                     showToast(R.string.password_empty);
                 } else {
-                    DataManager.getInstance().login();
-                    startActivity(MainActivity.class);
-                    finish();
+                    login.setEnabled(false);
+                    UserManager.getInstance().login(username, password,
+                            new LoginCallback() {
+                                @Override
+                                public void success(AVObject user) {
+                                    showToast(R.string.login_success);
+                                    startActivity(MainActivity.class);
+                                    finish();
+                                }
+
+                                @Override
+                                public void errorNetwork() {
+                                    showToast(R.string.network_error);
+                                    login.setEnabled(true);
+                                }
+
+                                @Override
+                                public void errorUsername() {
+                                    showToast(R.string.username_error);
+                                    login.setEnabled(true);
+                                }
+
+                                @Override
+                                public void errorPassword() {
+                                    showToast(R.string.password_error);
+                                    login.setEnabled(true);
+                                }
+                            });
                 }
+            }
+        });
+
+        Button register = getViewById(R.id.btn_register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(RegisterActivity.class);
             }
         });
     }

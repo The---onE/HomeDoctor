@@ -8,14 +8,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.avos.avoscloud.AVObject;
 import com.xmx.homedoctor.Fragments.ContactsFragment;
 import com.xmx.homedoctor.Fragments.MeFragment;
 import com.xmx.homedoctor.Fragments.PatientsFragment;
 import com.xmx.homedoctor.Fragments.StatisticsFragment;
 import com.xmx.homedoctor.Tools.ActivityBase.BaseNavigationActivity;
-import com.xmx.homedoctor.Tools.Data.DataManager;
 import com.xmx.homedoctor.Tools.PagerAdapter;
+import com.xmx.homedoctor.User.Callback.AutoLoginCallback;
 import com.xmx.homedoctor.User.LoginActivity;
+import com.xmx.homedoctor.User.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +29,36 @@ public class MainActivity extends BaseNavigationActivity {
     protected void initView(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
 
-        if (!DataManager.getInstance().isLoggedIn()) {
-            startActivity(LoginActivity.class);
-            finish();
-        }
+        UserManager.getInstance().autoLogin(new AutoLoginCallback() {
+            @Override
+            public void success(AVObject user) {
+            }
+
+            @Override
+            public void notLoggedIn() {
+                startActivity(LoginActivity.class);
+                finish();
+            }
+
+            @Override
+            public void errorNetwork() {
+                showToast(R.string.network_error);
+                startActivity(LoginActivity.class);
+                finish();
+            }
+
+            @Override
+            public void errorUsername() {
+                startActivity(LoginActivity.class);
+                finish();
+            }
+
+            @Override
+            public void errorChecksum() {
+                startActivity(LoginActivity.class);
+                finish();
+            }
+        });
 
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(new PatientsFragment());

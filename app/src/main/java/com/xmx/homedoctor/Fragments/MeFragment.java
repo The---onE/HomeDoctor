@@ -9,8 +9,8 @@ import android.widget.Button;
 
 import com.xmx.homedoctor.R;
 import com.xmx.homedoctor.Tools.BaseFragment;
-import com.xmx.homedoctor.Tools.Data.DataManager;
 import com.xmx.homedoctor.User.LoginActivity;
+import com.xmx.homedoctor.User.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +26,7 @@ public class MeFragment extends BaseFragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataManager.getInstance().logout();
+                UserManager.getInstance().logout();
                 startActivity(LoginActivity.class);
                 getActivity().finish();
             }
