@@ -120,4 +120,6 @@
     <string name="female">女</string>
     <string name="error_id">身份证号格式不正确</string>
 
+    <string name="add_prescription">开处方</string>
+
 </resources>

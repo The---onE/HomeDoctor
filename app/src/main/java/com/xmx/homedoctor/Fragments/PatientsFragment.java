@@ -14,6 +14,7 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.xmx.homedoctor.Constants;
 import com.xmx.homedoctor.Patients.Patient;
+import com.xmx.homedoctor.Patients.PatientDetailActivity;
 import com.xmx.homedoctor.Patients.PatientsAdapter;
 import com.xmx.homedoctor.R;
 import com.xmx.homedoctor.Tools.BaseFragment;
@@ -60,7 +61,7 @@ public class PatientsFragment extends BaseFragment
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Patient item = (Patient) parent.getItemAtPosition(position);
                 if (item != null && item.getId() != null) {
-                    showToast(item.getId());
+                    startActivity(PatientDetailActivity.class, "id", item.getId());
                 }
             }
         });
@@ -153,7 +154,7 @@ public class PatientsFragment extends BaseFragment
                     if (flag) {
                         mAdapter.setItems(mItems);
                     } else {
-                        showToast(R.string.no_more);
+                        //showToast(R.string.no_more);
                     }
                 } else {
                     filterException(e);
