@@ -37,6 +37,9 @@
         <activity
             android:name=".Patients.AddPrescriptionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Patients.ShowPrescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

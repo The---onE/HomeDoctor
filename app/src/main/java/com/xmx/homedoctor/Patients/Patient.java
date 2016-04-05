@@ -6,12 +6,12 @@ package com.xmx.homedoctor.Patients;
 public class Patient {
     String id = null;
     String username = null;
-    String nicknmame = null;
+    String nickname = null;
 
     public Patient(String i, String un, String nn) {
         id = i;
         username = un;
-        nicknmame = nn;
+        nickname = nn;
     }
 
     public String getId() {
@@ -22,8 +22,8 @@ public class Patient {
         return username;
     }
 
-    public String getNicknmame() {
-        return nicknmame;
+    public String getNickname() {
+        return nickname;
     }
 
     @Override

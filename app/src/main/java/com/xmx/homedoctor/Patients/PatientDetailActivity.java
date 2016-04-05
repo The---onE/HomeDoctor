@@ -42,6 +42,14 @@ public class PatientDetailActivity extends BaseTempActivity {
                 startActivity(AddPrescriptionActivity.class, "id", id);
             }
         });
+
+        Button showPrescription = getViewById(R.id.btn_show_prescription);
+        showPrescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ShowPrescriptionActivity.class, "id", id);
+            }
+        });
     }
 
     @Override

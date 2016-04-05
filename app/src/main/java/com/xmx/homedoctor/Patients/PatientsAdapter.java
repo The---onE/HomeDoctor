@@ -69,7 +69,7 @@ public class PatientsAdapter extends BaseAdapter {
         if (position < mItems.size()) {
             holder.username.setText(mItems.get(position).getUsername());
             holder.username.setTextColor(Color.BLACK);
-            holder.nickname.setText(mItems.get(position).getNicknmame());
+            holder.nickname.setText(mItems.get(position).getNickname());
             holder.nickname.setTextColor(Color.BLACK);
         } else {
             holder.nickname.setText("加载失败");
