@@ -12,6 +12,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.xmx.homedoctor.Constants;
 import com.xmx.homedoctor.R;
 import com.xmx.homedoctor.Tools.ActivityBase.BaseTempActivity;
 import com.xmx.homedoctor.User.Callback.AutoLoginCallback;
@@ -132,6 +133,7 @@ public class AddPrescriptionActivity extends BaseTempActivity {
         post.put("text", text);
         post.put("suggestion", suggestion);
         post.put("type", type);
+        post.put("status", Constants.STATUS_WAITING);
         post.put("patient", id);
         UserManager.getInstance().checkLogin(new AutoLoginCallback() {
             @Override
