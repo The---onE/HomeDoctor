@@ -32,6 +32,7 @@ public class ShowPrescriptionActivity extends BaseTempActivity {
 
         AVQuery<AVObject> query = new AVQuery<>("Prescription");
         query.whereEqualTo("patient", id);
+        query.orderByDescending("date");
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
