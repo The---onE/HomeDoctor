@@ -1,13 +1,37 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.xmx.homedoctor.Fragments.ContactsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/open_bluetooth"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/contacts" />
+        android:layout_height="wrap_content"
+        android:text="@string/open_bluetooth" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/search_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search_bluetooth" />
+
+    <EditText
+        android:id="@+id/text_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/send_bluetooth_hint" />
+
+    <Button
+        android:id="@+id/send_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/send_bluetooth" />
+
+    <TextView
+        android:id="@+id/bluetooth_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
