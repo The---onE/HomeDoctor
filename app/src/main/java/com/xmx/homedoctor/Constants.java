@@ -9,6 +9,7 @@ public class Constants {
     public static final String DATABASE_FILE = DATABASE_DIR + "/database.db";
 
     public static final long LONGEST_EXIT_TIME = 2000;
+    public static final int SPLASH_TIME = 3000;
 
     public static final int LONGEST_LOAD_TIME = 20;
 
