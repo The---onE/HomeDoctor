@@ -108,6 +108,13 @@ public class ContactsFragment extends BaseFragment {
             stateText.setText(R.string.bluetooth_unavailable);
         }
 
+        bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
+            public void onDataReceived(byte[] data, String message) {
+                showToast("接受到数据：" + data);
+                showToast(message);
+            }
+        });
+
         return view;
     }
 
