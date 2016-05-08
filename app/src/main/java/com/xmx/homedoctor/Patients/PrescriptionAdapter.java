@@ -96,7 +96,7 @@ public class PrescriptionAdapter extends BaseAdapter {
             }
             holder.card.setCardBackgroundColor(bg);
         } else {
-            holder.title.setText("加载失败");
+            holder.title.setText("没有数据");
         }
 
         return convertView;
