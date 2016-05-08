@@ -51,8 +51,9 @@ public class StatisticsFragment extends BaseFragment {
                         String symptom = item.getString("symptom");
                         long addTime = item.getLong("addTime");
                         int status = item.getInt("status");
+                        String patient = item.getString("patientName");
 
-                        Appointment a = new Appointment(id, new Date(time), type, symptom,
+                        Appointment a = new Appointment(id, patient, new Date(time), type, symptom,
                                 new Date(addTime), status);
                         appointments.add(a);
                     }
@@ -64,7 +65,6 @@ public class StatisticsFragment extends BaseFragment {
                 }
             }
         });
-
         return view;
     }
 
@@ -86,8 +86,9 @@ public class StatisticsFragment extends BaseFragment {
                         String symptom = item.getString("symptom");
                         long addTime = item.getLong("addTime");
                         int status = item.getInt("status");
+                        String patient = item.getString("patientName");
 
-                        Appointment a = new Appointment(id, new Date(time), type, symptom,
+                        Appointment a = new Appointment(id, patient, new Date(time), type, symptom,
                                 new Date(addTime), status);
                         appointments.add(a);
                     }

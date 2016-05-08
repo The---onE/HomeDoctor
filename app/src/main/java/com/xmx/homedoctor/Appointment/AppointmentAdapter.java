@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.GetCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.xmx.homedoctor.Constants;
 import com.xmx.homedoctor.R;
 
@@ -54,6 +59,7 @@ public class AppointmentAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
+        TextView patient;
         TextView time;
         TextView type;
         TextView symptom;
@@ -68,6 +74,7 @@ public class AppointmentAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_appointment, null);
             holder = new ViewHolder();
+            holder.patient = (TextView) convertView.findViewById(R.id.item_patient);
             holder.time = (TextView) convertView.findViewById(R.id.item_time);
             holder.type = (TextView) convertView.findViewById(R.id.item_type);
             holder.symptom = (TextView) convertView.findViewById(R.id.item_symptom);
@@ -82,6 +89,7 @@ public class AppointmentAdapter extends BaseAdapter {
             Appointment appointment = mItems.get(position);
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String timeString = df.format(appointment.getTime());
+            holder.patient.setText(appointment.getPatient());
             holder.time.setText(timeString);
             holder.type.setText(Constants.APPOINTMENT_TYPE[appointment.getType()]);
             holder.symptom.setText(appointment.getSymptom());
@@ -97,7 +105,7 @@ public class AppointmentAdapter extends BaseAdapter {
                     break;
             }
         } else {
-            holder.time.setText("没有数据");
+            holder.patient.setText("没有数据");
         }
 
         return convertView;

@@ -7,14 +7,16 @@ import java.util.Date;
  */
 public class Appointment {
     long mId;
+    String mPatient;
     Date mTime;
     int mType;
     String mSymptom;
     Date mAddTime;
     int mStatus;
 
-    public Appointment(long id, Date time, int type, String symptom, Date addTime, int status) {
+    public Appointment(long id, String patient, Date time, int type, String symptom, Date addTime, int status) {
         mId = id;
+        mPatient = patient;
         mTime = time;
         mType = type;
         mSymptom = symptom;
@@ -24,6 +26,10 @@ public class Appointment {
 
     public long getId() {
         return mId;
+    }
+
+    public String getPatient() {
+        return mPatient;
     }
 
     public Date getTime() {
