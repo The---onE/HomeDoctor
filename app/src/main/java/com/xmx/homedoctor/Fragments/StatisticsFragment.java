@@ -94,7 +94,6 @@ public class StatisticsFragment extends BaseFragment {
                     }
 
                     adapter.setItems(appointments);
-                    appointmentList.setAdapter(adapter);
                 } else {
                     e.printStackTrace();
                 }
