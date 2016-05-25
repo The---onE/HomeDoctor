@@ -4,7 +4,7 @@ package com.xmx.homedoctor;
  * Created by The_onE on 2016/2/24.
  */
 public class Constants {
-    public static final String FILE_DIR = "/HomeDoctor";
+    public static final String FILE_DIR = "/HomeNurse/Doctor";
     public static final String DATABASE_DIR = FILE_DIR + "/Database";
     public static final String DATABASE_FILE = DATABASE_DIR + "/database.db";
 
