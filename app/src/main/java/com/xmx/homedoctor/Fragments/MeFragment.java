@@ -270,9 +270,10 @@ public class MeFragment extends BaseFragment {
 
                 long id = UserManager.getId(user);
                 if (id > 0) {
-                    UserSQLManager.getInstance().updateDate(id, "NAME", name, "GENDER", gen, "BIRTHDAY", "" + birthday.getTime(),
-                            "HEIGHT", "" + height, "WEIGHT", "" + weight, "ID_NUMBER", idNumber, "PHONE", phone,
-                            "EMAIL", email, "ADDRESS", address);
+                    UserSQLManager.getInstance().updateDate(id, "NAME ="+ name, "GENDER="+ gen,
+                            "BIRTHDAY=" + birthday.getTime(), "HEIGHT=" + height, "WEIGHT=" + weight,
+                            "ID_NUMBER="+ idNumber, "PHONE="+ phone,
+                            "EMAIL="+ email, "ADDRESS="+ address);
                 } else {
                     UserEntity userEntity = new UserEntity(id, name, gen, birthday.getTime(),
                             height, weight, idNumber, phone, email, address);
