@@ -1,10 +1,6 @@
 package com.xmx.homedoctor.User;
 
-import android.database.Cursor;
-
-import com.xmx.homedoctor.Tools.Data.BaseSQLEntityManager;
-
-import java.util.Date;
+import com.xmx.homedoctor.Tools.Data.SQL.BaseSQLEntityManager;
 
 /**
  * Created by The_onE on 2016/3/26.

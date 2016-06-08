@@ -29,14 +29,23 @@ public class StatisticsFragment extends BaseFragment {
     ListView appointmentList;
     boolean loadedFlag = false;
 
+    @Override
+    protected View getContentView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_statistics, container, false);
-
+    protected void initView(View view) {
         appointmentList = (ListView) view.findViewById(R.id.list_appointment);
+    }
 
+    @Override
+    protected void setListener(View view) {
+
+    }
+
+    @Override
+    protected void processLogic(View view, Bundle savedInstanceState) {
         AVQuery<AVObject> query = new AVQuery<>("Appointment");
         query.whereEqualTo("status", Constants.STATUS_WAITING);
         query.orderByDescending("date");
@@ -67,7 +76,6 @@ public class StatisticsFragment extends BaseFragment {
                 }
             }
         });
-        return view;
     }
 
     @Override

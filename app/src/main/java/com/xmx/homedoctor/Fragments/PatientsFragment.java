@@ -46,16 +46,21 @@ public class PatientsFragment extends BaseFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_patients, container, false);
+    protected View getContentView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_patients, container, false);
+    }
 
+    @Override
+    protected void initView(View view) {
         mList = (ListView) view.findViewById(R.id.patients_list);
         initPatientsList();
 
         mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.patients_refresh);
         initRefreshLayout();
+    }
 
+    @Override
+    protected void setListener(View view) {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,8 +70,11 @@ public class PatientsFragment extends BaseFragment
                 }
             }
         });
+    }
 
-        return view;
+    @Override
+    protected void processLogic(View view, Bundle savedInstanceState) {
+
     }
 
     private void initPatientsList() {

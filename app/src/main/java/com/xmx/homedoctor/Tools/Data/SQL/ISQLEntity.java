@@ -1,4 +1,4 @@
-package com.xmx.homedoctor.Tools.Data;
+package com.xmx.homedoctor.Tools.Data.SQL;
 
 import android.content.ContentValues;
 import android.database.Cursor;

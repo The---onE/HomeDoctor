@@ -3,7 +3,7 @@ package com.xmx.homedoctor.User;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.xmx.homedoctor.Tools.Data.ISQLEntity;
+import com.xmx.homedoctor.Tools.Data.SQL.ISQLEntity;
 
 /**
  * Created by The_onE on 2016/5/25.

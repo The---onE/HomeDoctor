@@ -28,10 +28,12 @@ public class ContactsFragment extends BaseFragment {
     TextView stateText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View getContentView(LayoutInflater inflater, ViewGroup container) {
+        return inflater.inflate(R.layout.fragment_contacts, container, false);
+    }
 
-        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+    @Override
+    protected void initView(View view) {
         editText = (EditText) view.findViewById(R.id.text_bluetooth);
         stateText = (TextView) view.findViewById(R.id.bluetooth_state);
 
@@ -43,6 +45,15 @@ public class ContactsFragment extends BaseFragment {
                 stateText.setText(R.string.bluetooth_unopened);
             }
 
+
+        } else {
+            stateText.setText(R.string.bluetooth_unavailable);
+        }
+    }
+
+    @Override
+    protected void setListener(View view) {
+        if (bt.isBluetoothAvailable()) {
             Button open = (Button) view.findViewById(R.id.open_bluetooth);
             open.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,18 +115,19 @@ public class ContactsFragment extends BaseFragment {
                     }
                 }
             });
-        } else {
-            stateText.setText(R.string.bluetooth_unavailable);
+
+            bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
+                public void onDataReceived(byte[] data, String message) {
+                    showToast("接受到数据：" + data);
+                    showToast(message);
+                }
+            });
         }
+    }
 
-        bt.setOnDataReceivedListener(new BluetoothSPP.OnDataReceivedListener() {
-            public void onDataReceived(byte[] data, String message) {
-                showToast("接受到数据：" + data);
-                showToast(message);
-            }
-        });
+    @Override
+    protected void processLogic(View view, Bundle savedInstanceState) {
 
-        return view;
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
