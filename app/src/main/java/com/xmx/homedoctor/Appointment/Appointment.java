@@ -1,54 +1,50 @@
 package com.xmx.homedoctor.Appointment;
 
+import com.avos.avoscloud.AVObject;
+import com.xmx.homedoctor.Constants;
+import com.xmx.homedoctor.Tools.Data.Cloud.ICloudEntity;
+
 import java.util.Date;
 
 /**
  * Created by The_onE on 2016/3/27.
  */
-public class Appointment {
-    long mId;
-    String mPatient;
-    Date mTime;
-    int mType;
-    String mSymptom;
-    Date mAddTime;
-    int mStatus;
+public class Appointment implements ICloudEntity {
+    public Date mTime;
+    public int mType;
+    public String mSymptom;
+    public Date mAddTime;
+    public int mStatus = Constants.STATUS_WAITING;
+    public String mCloudId;
+    public String mPatient;
 
-    public Appointment(long id, String patient, Date time, int type, String symptom, Date addTime, int status) {
-        mId = id;
-        mPatient = patient;
-        mTime = time;
-        mType = type;
-        mSymptom = symptom;
-        mAddTime = addTime;
-        mStatus = status;
+    public Appointment() {
     }
 
-    public long getId() {
-        return mId;
+    @Override
+    public AVObject getContent(String tableName) {
+        AVObject object = new AVObject(tableName);
+        if (mCloudId != null) {
+            object.setObjectId(mCloudId);
+        }
+        object.put("time", mTime);
+        object.put("type", mType);
+        object.put("symptom", mSymptom);
+        object.put("status", mStatus);
+        object.put("addTime", mAddTime);
+        return object;
     }
 
-    public String getPatient() {
-        return mPatient;
-    }
-
-    public Date getTime() {
-        return mTime;
-    }
-
-    public int getType() {
-        return mType;
-    }
-
-    public String getSymptom() {
-        return mSymptom;
-    }
-
-    public Date getAddTime() {
-        return mAddTime;
-    }
-
-    public int getStatus() {
-        return mStatus;
+    @Override
+    public Appointment convertToEntity(AVObject object) {
+        Appointment appointment = new Appointment();
+        appointment.mCloudId = object.getObjectId();
+        appointment.mTime = object.getDate("time");
+        appointment.mSymptom = object.getString("symptom");
+        appointment.mAddTime = object.getDate("addTime");
+        appointment.mType = object.getInt("type");
+        appointment.mStatus = object.getInt("status");
+        appointment.mPatient = object.getString("patientName");
+        return appointment;
     }
 }

@@ -5,13 +5,11 @@ import android.content.SharedPreferences;
 
 import com.avos.avoscloud.AVACL;
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVInstallation;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.CountCallback;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
-import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.xmx.homedoctor.User.Callback.AutoLoginCallback;
 import com.xmx.homedoctor.User.Callback.LoginCallback;
@@ -109,14 +107,14 @@ public class UserManager {
                             editor.putString("nickname", "");
                             editor.apply();
 
-                            AVObject user = list.get(0);
+                            /*AVObject user = list.get(0);
                             List<String> subscribing = user.getList("subscribing");
                             if (subscribing != null) {
                                 for (String sub : subscribing) {
                                     PushService.unsubscribe(mContext, UserManager.getSHA(sub));
                                 }
                                 AVInstallation.getCurrentInstallation().saveInBackground();
-                            }
+                            }*/
                         }
                     } else {
                         e.printStackTrace();

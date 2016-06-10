@@ -13,13 +13,17 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.xmx.homedoctor.Appointment.Appointment;
 import com.xmx.homedoctor.Appointment.AppointmentAdapter;
+import com.xmx.homedoctor.Appointment.AppointmentManager;
 import com.xmx.homedoctor.Constants;
 import com.xmx.homedoctor.R;
 import com.xmx.homedoctor.Tools.BaseFragment;
+import com.xmx.homedoctor.Tools.Data.Callback.SelectCallback;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,34 +50,44 @@ public class StatisticsFragment extends BaseFragment {
 
     @Override
     protected void processLogic(View view, Bundle savedInstanceState) {
-        AVQuery<AVObject> query = new AVQuery<>("Appointment");
-        query.whereEqualTo("status", Constants.STATUS_WAITING);
-        query.orderByDescending("date");
-        query.findInBackground(new FindCallback<AVObject>() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", Constants.STATUS_WAITING);
+        AppointmentManager.getInstance().selectByCondition(map, "date", false, new SelectCallback<Appointment>() {
             @Override
-            public void done(List<AVObject> list, AVException e) {
-                if (e == null) {
-                    List<Appointment> appointments = new ArrayList<>();
-                    for (AVObject item : list) {
-                        long id = 0;
-                        long time = item.getLong("time");
-                        int type = item.getInt("type");
-                        String symptom = item.getString("symptom");
-                        long addTime = item.getLong("addTime");
-                        int status = item.getInt("status");
-                        String patient = item.getString("patientName");
+            public void success(List<Appointment> appointments) {
+                adapter = new AppointmentAdapter(getContext(), appointments);
+                appointmentList.setAdapter(adapter);
+                loadedFlag = true;
+            }
 
-                        Appointment a = new Appointment(id, patient, new Date(time), type, symptom,
-                                new Date(addTime), status);
-                        appointments.add(a);
-                    }
+            @Override
+            public void notInit() {
+                showToast(R.string.failure);
+            }
 
-                    adapter = new AppointmentAdapter(getContext(), appointments);
-                    appointmentList.setAdapter(adapter);
-                    loadedFlag = true;
-                } else {
-                    e.printStackTrace();
-                }
+            @Override
+            public void syncError(AVException e) {
+                showToast(R.string.sync_failure);
+            }
+
+            @Override
+            public void notLoggedIn() {
+                showToast(R.string.not_loggedin);
+            }
+
+            @Override
+            public void errorNetwork() {
+                showToast(R.string.network_error);
+            }
+
+            @Override
+            public void errorUsername() {
+                showToast(R.string.username_error);
+            }
+
+            @Override
+            public void errorChecksum() {
+                showToast(R.string.not_loggedin);
             }
         });
     }
@@ -82,34 +96,45 @@ public class StatisticsFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if (loadedFlag) {
-            AVQuery<AVObject> query = new AVQuery<>("Appointment");
-            query.whereEqualTo("status", Constants.STATUS_WAITING);
-            query.orderByDescending("date");
-            query.findInBackground(new FindCallback<AVObject>() {
-                @Override
-                public void done(List<AVObject> list, AVException e) {
-                    if (e == null) {
-                        List<Appointment> appointments = new ArrayList<>();
-                        for (AVObject item : list) {
-                            long id = 0;
-                            long time = item.getLong("time");
-                            int type = item.getInt("type");
-                            String symptom = item.getString("symptom");
-                            long addTime = item.getLong("addTime");
-                            int status = item.getInt("status");
-                            String patient = item.getString("patientName");
-
-                            Appointment a = new Appointment(id, patient, new Date(time), type, symptom,
-                                    new Date(addTime), status);
-                            appointments.add(a);
+            Map<String, Object> map = new HashMap<>();
+            map.put("status", Constants.STATUS_WAITING);
+            AppointmentManager.getInstance().selectByCondition(map, "date", false,
+                    new SelectCallback<Appointment>() {
+                        @Override
+                        public void success(List<Appointment> appointments) {
+                            adapter.setItems(appointments);
                         }
 
-                        adapter.setItems(appointments);
-                    } else {
-                        e.printStackTrace();
-                    }
-                }
-            });
+                        @Override
+                        public void notInit() {
+                            showToast(R.string.failure);
+                        }
+
+                        @Override
+                        public void syncError(AVException e) {
+                            showToast(R.string.sync_failure);
+                        }
+
+                        @Override
+                        public void notLoggedIn() {
+                            showToast(R.string.not_loggedin);
+                        }
+
+                        @Override
+                        public void errorNetwork() {
+                            showToast(R.string.network_error);
+                        }
+
+                        @Override
+                        public void errorUsername() {
+                            showToast(R.string.username_error);
+                        }
+
+                        @Override
+                        public void errorChecksum() {
+                            showToast(R.string.not_loggedin);
+                        }
+                    });
         }
     }
 }

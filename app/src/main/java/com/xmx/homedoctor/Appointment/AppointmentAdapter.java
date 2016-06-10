@@ -88,15 +88,15 @@ public class AppointmentAdapter extends BaseAdapter {
         if (position < mItems.size()) {
             Appointment appointment = mItems.get(position);
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String timeString = df.format(appointment.getTime());
-            holder.patient.setText(appointment.getPatient());
+            String timeString = df.format(appointment.mTime);
+            holder.patient.setText(appointment.mPatient);
             holder.time.setText(timeString);
-            holder.type.setText(Constants.APPOINTMENT_TYPE[appointment.getType()]);
-            holder.symptom.setText(appointment.getSymptom());
-            String addTimeString = df.format(appointment.getAddTime());
+            holder.type.setText(Constants.APPOINTMENT_TYPE[appointment.mType]);
+            holder.symptom.setText(appointment.mSymptom);
+            String addTimeString = df.format(appointment.mAddTime);
             holder.addTime.setText(addTimeString);
 
-            switch (appointment.getStatus()) {
+            switch (appointment.mStatus) {
                 case Constants.STATUS_CANCELED:
                     holder.card.setCardBackgroundColor(Color.GRAY);
                     break;
