@@ -54,6 +54,18 @@
         <activity
             android:name=".Prescription.PrescriptionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Measure.BloodPressureActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Measure.HeartRateActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Measure.PulesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Measure.TemperatureActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
