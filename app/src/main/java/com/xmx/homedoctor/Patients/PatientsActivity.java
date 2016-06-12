@@ -1,10 +1,7 @@
-package com.xmx.homedoctor.Fragments;
+package com.xmx.homedoctor.Patients;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -13,11 +10,8 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 import com.xmx.homedoctor.Constants;
-import com.xmx.homedoctor.Patients.Patient;
-import com.xmx.homedoctor.Patients.PatientDetailActivity;
-import com.xmx.homedoctor.Patients.PatientsAdapter;
 import com.xmx.homedoctor.R;
-import com.xmx.homedoctor.Tools.BaseFragment;
+import com.xmx.homedoctor.Tools.ActivityBase.BaseTempActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +20,7 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.refreshlayout.BGARefreshViewHolder;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PatientsFragment extends BaseFragment
+public class PatientsActivity extends BaseTempActivity
         implements BGARefreshLayout.BGARefreshLayoutDelegate {
 
     BGARefreshLayout mRefreshLayout;
@@ -40,27 +31,18 @@ public class PatientsFragment extends BaseFragment
     ArrayList<Patient> mItems = new ArrayList<>();
 
     @Override
-    public void onResume() {
-        super.onResume();
-        onBGARefreshLayoutBeginRefreshing(mRefreshLayout);
-    }
+    protected void initView(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_patients);
 
-    @Override
-    protected View getContentView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_patients, container, false);
-    }
-
-    @Override
-    protected void initView(View view) {
-        mList = (ListView) view.findViewById(R.id.patients_list);
+        mList = getViewById(R.id.patients_list);
         initPatientsList();
 
-        mRefreshLayout = (BGARefreshLayout) view.findViewById(R.id.patients_refresh);
+        mRefreshLayout = getViewById(R.id.patients_refresh);
         initRefreshLayout();
     }
 
     @Override
-    protected void setListener(View view) {
+    protected void setListener() {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,13 +55,18 @@ public class PatientsFragment extends BaseFragment
     }
 
     @Override
-    protected void processLogic(View view, Bundle savedInstanceState) {
+    protected void processLogic(Bundle savedInstanceState) {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        onBGARefreshLayoutBeginRefreshing(mRefreshLayout);
+    }
     private void initPatientsList() {
         mItems.add(new Patient(null, getString(R.string.loading), getString(R.string.loading)));
-        mAdapter = new PatientsAdapter(getContext(), mItems);
+        mAdapter = new PatientsAdapter(getBaseContext(), mItems);
         mList.setAdapter(mAdapter);
 
         AVQuery<AVObject> query = createQuery(false);
@@ -105,7 +92,7 @@ public class PatientsFragment extends BaseFragment
         // 为BGARefreshLayout设置代理
         mRefreshLayout.setDelegate(this);
         // 设置下拉刷新和上拉加载更多的风格     参数1：应用程序上下文，参数2：是否具有上拉加载更多功能
-        BGARefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(getContext(), true);
+        BGARefreshViewHolder refreshViewHolder = new BGANormalRefreshViewHolder(getBaseContext(), true);
         // 设置下拉刷新和上拉加载更多的风格
         mRefreshLayout.setRefreshViewHolder(refreshViewHolder);
 

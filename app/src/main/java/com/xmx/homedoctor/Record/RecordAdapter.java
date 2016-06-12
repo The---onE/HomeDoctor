@@ -1,4 +1,4 @@
-package com.xmx.homedoctor.Patients;
+package com.xmx.homedoctor.Record;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -21,28 +21,28 @@ import java.util.Locale;
 /**
  * Created by The_onE on 2016/4/2.
  */
-public class PrescriptionAdapter extends BaseAdapter {
+public class RecordAdapter extends BaseAdapter {
     Context mContext;
-    List<Prescription> mPrescriptions;
+    List<Record> mRecords;
 
-    PrescriptionAdapter(Context context, List<Prescription> record) {
+    RecordAdapter(Context context, List<Record> record) {
         mContext = context;
-        mPrescriptions = record;
+        mRecords = record;
     }
 
     @Override
     public int getCount() {
-        return mPrescriptions.size();
+        return mRecords.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return mPrescriptions.get(i);
+        return mRecords.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return mPrescriptions.get(i).getId();
+        return mRecords.get(i).getId();
     }
 
     static class ViewHolder {
@@ -69,8 +69,8 @@ public class PrescriptionAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if (position < mPrescriptions.size()) {
-            Prescription record = mPrescriptions.get(position);
+        if (position < mRecords.size()) {
+            Record record = mRecords.get(position);
             String title = record.getTitle();
             String text = record.getText();
             String suggestion = record.getSuggestion();

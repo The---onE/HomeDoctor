@@ -1,7 +1,6 @@
-package com.xmx.homedoctor.Patients;
+package com.xmx.homedoctor.Record;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -16,9 +15,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ShowPrescriptionActivity extends BaseTempActivity {
+public class ShowRecordActivity extends BaseTempActivity {
     ListView prescriptionList;
-    List<Prescription> prescriptions = new ArrayList<>();
+    List<Record> records = new ArrayList<>();
     Context context;
 
     @Override
@@ -30,7 +29,7 @@ public class ShowPrescriptionActivity extends BaseTempActivity {
         prescriptionList = getViewById(R.id.prescription_list);
         context = this;
 
-        AVQuery<AVObject> query = new AVQuery<>("Prescription");
+        AVQuery<AVObject> query = new AVQuery<>("Record");
         query.whereEqualTo("patient", id);
         query.orderByDescending("date");
         query.findInBackground(new FindCallback<AVObject>() {
@@ -46,11 +45,11 @@ public class ShowPrescriptionActivity extends BaseTempActivity {
                         String suggestion = item.getString("suggestion");
                         int status = item.getInt("status");
                         int type = item.getInt("type");
-                        Prescription r = new Prescription(id, title, time, text, suggestion, status, type);
-                        prescriptions.add(r);
+                        Record r = new Record(id, title, time, text, suggestion, status, type);
+                        records.add(r);
                     }
 
-                    PrescriptionAdapter adapter = new PrescriptionAdapter(context, prescriptions);
+                    RecordAdapter adapter = new RecordAdapter(context, records);
                     prescriptionList.setAdapter(adapter);
                 } else {
                     e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.xmx.homedoctor.Patients;
+package com.xmx.homedoctor.Record;
 
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddPrescriptionActivity extends BaseTempActivity {
+public class AddRecordActivity extends BaseTempActivity {
     String id;
 
     TextView typeTextView;
@@ -38,7 +38,7 @@ public class AddPrescriptionActivity extends BaseTempActivity {
         setContentView(R.layout.activity_add_prescription);
 
         id = getIntent().getStringExtra("id");
-        setTitle(R.string.add_prescription);
+        setTitle(R.string.add_record);
 
         timeTextView = getViewById(R.id.time_tv);
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -127,7 +127,7 @@ public class AddPrescriptionActivity extends BaseTempActivity {
     }
 
     private void pushToCloud(String title, Date date, String text, String suggestion, int type) {
-        final AVObject post = new AVObject("Prescription");
+        final AVObject post = new AVObject("Record");
         post.put("title", title);
         post.put("date", date);
         post.put("text", text);

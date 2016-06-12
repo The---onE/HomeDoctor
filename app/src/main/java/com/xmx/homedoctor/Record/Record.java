@@ -1,11 +1,11 @@
-package com.xmx.homedoctor.Patients;
+package com.xmx.homedoctor.Record;
 
 import java.util.Date;
 
 /**
  * Created by The_onE on 2016/4/2.
  */
-public class Prescription {
+public class Record {
     long mId;
     String mTitle;
     long mTime;
@@ -14,7 +14,7 @@ public class Prescription {
     int mStatus;
     int mType;
 
-    public Prescription(long id, String title, long time, String text, String suggestion, int status, int type) {
+    public Record(long id, String title, long time, String text, String suggestion, int status, int type) {
         mId = id;
         mTitle = title;
         mTime = time;

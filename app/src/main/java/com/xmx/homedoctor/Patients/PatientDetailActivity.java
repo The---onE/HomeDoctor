@@ -8,7 +8,10 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.GetCallback;
+import com.xmx.homedoctor.Prescription.PrescriptionActivity;
 import com.xmx.homedoctor.R;
+import com.xmx.homedoctor.Record.AddRecordActivity;
+import com.xmx.homedoctor.Record.ShowRecordActivity;
 import com.xmx.homedoctor.Tools.ActivityBase.BaseTempActivity;
 
 public class PatientDetailActivity extends BaseTempActivity {
@@ -35,19 +38,27 @@ public class PatientDetailActivity extends BaseTempActivity {
 
     @Override
     protected void setListener() {
+        Button addRecord = getViewById(R.id.btn_add_record);
+        addRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(AddRecordActivity.class, "id", id);
+            }
+        });
+
+        Button showRecord = getViewById(R.id.btn_show_record);
+        showRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(ShowRecordActivity.class, "id", id);
+            }
+        });
+
         Button addPrescription = getViewById(R.id.btn_add_prescription);
         addPrescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(AddPrescriptionActivity.class, "id", id);
-            }
-        });
-
-        Button showPrescription = getViewById(R.id.btn_show_prescription);
-        showPrescription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(ShowPrescriptionActivity.class, "id", id);
+                startActivity(PrescriptionActivity.class, "id", id);
             }
         });
     }

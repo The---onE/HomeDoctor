@@ -1,8 +1,13 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xmx.homedoctor.Fragments.PatientsFragment">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".Patients.PatientsActivity">
+
+    <include layout="@layout/tool_bar" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/patients_refresh"
@@ -22,4 +27,4 @@
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-</FrameLayout>
+</LinearLayout>

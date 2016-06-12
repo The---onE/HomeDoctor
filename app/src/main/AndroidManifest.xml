@@ -40,12 +40,20 @@
             android:name=".Patients.PatientDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Patients.AddPrescriptionActivity"
+            android:name=".Record.AddRecordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Patients.ShowPrescriptionActivity"
+            android:name=".Record.ShowRecordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="app.akexorcist.bluetoothspp.DeviceList" />
+        <activity
+            android:name=".Patients.PatientsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Appointment.AppointmentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Prescription.PrescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -8,16 +8,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.avos.avoscloud.AVObject;
-import com.xmx.homedoctor.Fragments.ContactsFragment;
 import com.xmx.homedoctor.Fragments.MeFragment;
-import com.xmx.homedoctor.Fragments.PatientsFragment;
-import com.xmx.homedoctor.Fragments.StatisticsFragment;
+import com.xmx.homedoctor.Fragments.HomeFragment;
 import com.xmx.homedoctor.Tools.ActivityBase.BaseNavigationActivity;
 import com.xmx.homedoctor.Tools.PagerAdapter;
-import com.xmx.homedoctor.User.Callback.AutoLoginCallback;
-import com.xmx.homedoctor.User.LoginActivity;
-import com.xmx.homedoctor.User.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,15 +24,11 @@ public class MainActivity extends BaseNavigationActivity {
         setContentView(R.layout.activity_main);
 
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new PatientsFragment());
-        fragments.add(new ContactsFragment());
-        fragments.add(new StatisticsFragment());
+        fragments.add(new HomeFragment());
         fragments.add(new MeFragment());
 
         List<String> titles = new ArrayList<>();
-        titles.add(getString(R.string.patients));
-        titles.add(getString(R.string.contacts));
-        titles.add(getString(R.string.statistics));
+        titles.add(getString(R.string.home));
         titles.add(getString(R.string.me));
 
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), fragments, titles);
@@ -87,9 +77,9 @@ public class MainActivity extends BaseNavigationActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
