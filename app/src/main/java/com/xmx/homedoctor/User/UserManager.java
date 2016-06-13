@@ -11,6 +11,12 @@ import com.avos.avoscloud.CountCallback;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.xmx.homedoctor.Appointment.AppointmentManager;
+import com.xmx.homedoctor.Measure.Data.BloodPressure.BloodPressureManager;
+import com.xmx.homedoctor.Measure.Data.HeartRate.HeartRateManager;
+import com.xmx.homedoctor.Measure.Data.Pules.PulesManager;
+import com.xmx.homedoctor.Measure.Data.Temperature.TemperatureManager;
+import com.xmx.homedoctor.Prescription.PrescriptionManager;
 import com.xmx.homedoctor.User.Callback.AutoLoginCallback;
 import com.xmx.homedoctor.User.Callback.LoginCallback;
 import com.xmx.homedoctor.User.Callback.RegisterCallback;
@@ -88,6 +94,8 @@ public class UserManager {
         editor.putString("checksum", "");
         editor.putString("nickname", "");
         editor.apply();
+
+        clearDatabase();
     }
 
     public void logout() {
@@ -100,15 +108,10 @@ public class UserManager {
                 public void done(List<AVObject> list, AVException e) {
                     if (e == null) {
                         if (list.size() > 0) {
-                            SharedPreferences.Editor editor = mSP.edit();
-                            editor.putBoolean("loggedin", false);
-                            editor.putString("username", "");
-                            editor.putString("checksum", "");
-                            editor.putString("nickname", "");
-                            editor.apply();
+                            AVObject user = list.get(0);
+                            logout(user);
 
-                            /*AVObject user = list.get(0);
-                            List<String> subscribing = user.getList("subscribing");
+                            /*List<String> subscribing = user.getList("subscribing");
                             if (subscribing != null) {
                                 for (String sub : subscribing) {
                                     PushService.unsubscribe(mContext, UserManager.getSHA(sub));
@@ -326,5 +329,13 @@ public class UserManager {
                 }
             }
         });
+    }
+
+    private void clearDatabase() {
+        BloodPressureManager.getInstance().getSQLManager().clearDatabase();
+        HeartRateManager.getInstance().getSQLManager().clearDatabase();
+        PulesManager.getInstance().getSQLManager().clearDatabase();
+        TemperatureManager.getInstance().getSQLManager().clearDatabase();
+        UserSyncManager.getInstance().getSQLManager().clearDatabase();
     }
 }
